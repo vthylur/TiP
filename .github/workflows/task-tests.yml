@@ -24,3 +24,13 @@ jobs:
 
       - name: Run TASK-001 smoke test
         run: python -m pytest tests/test_project_smoke.py
+
+      - name: Start isolated database (TASK-002)
+        run: docker compose up -d --wait
+
+      - name: Run TASK-002 database smoke test
+        run: python -m pytest tests/test_db_smoke.py -v
+
+      - name: Tear down isolated database (TASK-002)
+        if: always()
+        run: docker compose down --volumes
