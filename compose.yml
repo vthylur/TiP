@@ -1,0 +1,18 @@
+# TASK-002: isolated PostgreSQL + TimescaleDB development/test database.
+#
+# Credentials are test-only. Do NOT use in production.
+# No canonical/historical data. No application container. No market-data schema.
+
+services:
+  db:
+    image: timescale/timescaledb:2.29.2-pg17
+    environment:
+      POSTGRES_USER: tip
+      POSTGRES_PASSWORD: tip_dev
+      POSTGRES_DB: tip_test
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tip -d tip_test"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
