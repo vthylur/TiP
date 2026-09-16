@@ -31,6 +31,9 @@ jobs:
       - name: Run TASK-002 database smoke test
         run: python -m pytest tests/test_db_smoke.py -v
 
+      - name: Run TASK-003 database design proof
+        run: python -m pytest tests/test_db_design_proof.py -v
+
       - name: Tear down isolated database (TASK-002)
         if: always()
         run: docker compose down --volumes
