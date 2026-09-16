@@ -25,6 +25,9 @@ jobs:
       - name: Run TASK-001 smoke test
         run: python -m pytest tests/test_project_smoke.py
 
+      - name: Run TASK-004 core data contracts tests
+        run: python -m pytest tests/test_market_data_contracts.py -v
+
       - name: Start isolated database (TASK-002)
         run: docker compose up -d --wait
 
